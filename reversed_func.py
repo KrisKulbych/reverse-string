@@ -1,40 +1,21 @@
-from string import punctuation, digits
+def reversed_func(text: str) -> str:
 
-def reversed_func(text):
-    """
-    The function reverses the letters in all words of input text.
-    The order of words preserves.
-    All non-letter symbols/numbers stays on the same places.
-    """
-    PRESERVED_CHARS = punctuation + digits
     reversed_text = []
+    letter_list = [letter for word in reversed(text.split()) for letter in word if letter.isalpha()]
 
-    for word in text.split():
-        char_list = []
-        reversed_word = ''
-        for char in word:
-            if char not in PRESERVED_CHARS:
-                char_list.append(char)
+    for letter in text:
+        if letter.isalpha():
+            reversed_text.append(letter_list.pop())
+        else:
+            reversed_text.append(letter)
 
-        for char in word:
-            if char in PRESERVED_CHARS:
-                reversed_word += char
-            else:
-                reversed_word += char_list.pop()
+    return ''.join(reversed_text)
 
-        reversed_text.append(reversed_word)
-
-    return ' '.join(reversed_text)
-
-
-if __name__ == "__main__":
-    cases = [
+cases = [
         ("abcd efgh", "dcba hgfe"),
         ("a1bcd efg!h", "d1cba hgf!e"),
-        ("", "")
+        ("", ""),
     ]
 
-    for input_text, expected_result in cases:
-        assert reversed_func(input_text) == expected_result
-
-
+for input_text, expected_result in cases:
+    assert reversed_func(input_text) == expected_result
