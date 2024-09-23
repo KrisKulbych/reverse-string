@@ -1,4 +1,9 @@
 def reverse_string(string: str) -> str:
+    """
+    The function reverses the letters in all words of input text.
+    The order of words preserves.
+    All non-letter symbols/numbers stays on the same places.
+    """
     string_reversed = []
     letter_list = [letter for word in reversed(string.split()) for letter in word if letter.isalpha()]
 
