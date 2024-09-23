@@ -5,15 +5,18 @@ def reverse_string(string: str) -> str:
     All non-letter symbols/numbers stays on the same places.
     """
     string_reversed = []
-    letter_list = [letter for word in reversed(string.split()) for letter in word if letter.isalpha()]
+    for word in string.split():
+        letter_list = [letter for letter in word if letter.isalpha()]
 
-    for letter in string:
-        if letter.isalpha():
-            string_reversed.append(letter_list.pop())
-        else:
-            string_reversed.append(letter)
+        word_reversed = []
+        for letter in word:
+            if letter.isalpha():
+                word_reversed.append(letter_list.pop())
+            else:
+                word_reversed.append(letter)
+        string_reversed.append(''.join(word_reversed))
 
-    return ''.join(string_reversed)
+    return ' '.join(string_reversed)
 
 
 if __name__ == "__main__":
