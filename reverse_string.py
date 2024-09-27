@@ -1,3 +1,10 @@
+class NonStringInputError(Exception):
+    """Raised when getting non-string input"""
+
+    def __init__(self, message):
+        super().__init__(message)
+
+
 def reverse_string(string: str) -> str:
     """
     The function reverses the letters in all words of input text.
@@ -5,6 +12,9 @@ def reverse_string(string: str) -> str:
     All non-letter symbols/numbers stays on the same places.
     """
     string_reversed = []
+    if not isinstance(string, str):
+        raise NonStringInputError('Error! Invalid input data: expected a string value')
+
     for word in string.split():
         letter_list = [letter for letter in word if letter.isalpha()]
 
@@ -26,4 +36,7 @@ if __name__ == "__main__":
             ("", ""),
         ]
     for input_text, expected_result in cases:
-        assert reverse_string(input_text) == expected_result
+        try:
+            assert reverse_string(input_text) == expected_result
+        except NonStringInputError as error:
+            print(error)
