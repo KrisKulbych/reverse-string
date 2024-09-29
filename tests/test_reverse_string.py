@@ -4,7 +4,7 @@ from task_2 import reverse_string, NonStringInputError
 
 
 class TestReverseString(TestCase):
-    def test_reverse_string(self):
+    def test_reverse_string(self) -> None:
         # Given
         cases = [
             ("abcd efgh", "dcba hgfe"),
@@ -17,7 +17,7 @@ class TestReverseString(TestCase):
                 # Then
                 self.assertEqual(reverse_string(input_text), expected_result)
 
-    def test_NonStringInputError(self):
+    def test_non_string_input(self) -> None:
         # Given
         cases = [123, 30.6, None, [], {}, set()]
         # When
